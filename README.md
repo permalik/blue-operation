@@ -1,2 +1,2 @@
-# blue-operation
-operation:LLM Client IaC and Automation
+# yyyoink-operation
+operation:Compression, Binary, and LLM Toolkit IaC and Automation
