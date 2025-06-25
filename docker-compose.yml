@@ -18,8 +18,8 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka/data
 
-  blue-api:
-    build: ./blue-api
+  yyyoink-api:
+    build: ./yyyoink-api
     ports:
       - "8080:8080"
     depends_on:
@@ -27,43 +27,43 @@ services:
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-  blue-preprocess:
-    build: ./blue-preprocess
+  yyyoink-preprocess:
+    build: ./yyyoink-preprocess
     depends_on:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       
-  blue-dispatch:
-    build: ./blue-dispatch
+  yyyoink-dispatch:
+    build: ./yyyoink-dispatch
     depends_on:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-  # blue-core:
-  #   build: ./blue-preprocess
-  #   depends_on:
-  #     - kafka
-  #   environment:
-  #     KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-
-  blue-postprocess:
-    build: ./blue-postprocess
+  yyyoink-llm:
+    build: ./yyyoink-llm
     depends_on:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-  blue-feedback:
-    build: ./blue-feedback
+  yyyoink-postprocess:
+    build: ./yyyoink-postprocess
     depends_on:
       - kafka
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-  blue-notification:
-    build: ./blue-notification
+  yyyoink-feedback:
+    build: ./yyyoink-feedback
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+  yyyoink-notification:
+    build: ./yyyoink-notification
     depends_on:
       - kafka
     environment:
